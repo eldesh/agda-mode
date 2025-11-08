@@ -3,16 +3,16 @@ use crate::pos::{InteractionId, Interval, ProblemId};
 use serde::Deserialize;
 use std::fmt::{Display, Error, Formatter};
 
-#[serde(rename_all = "camelCase")]
 #[derive(Deserialize, Clone, Debug, Eq, PartialEq)]
+#[serde(rename_all = "camelCase")]
 pub struct OutputForm {
     pub range: Vec<Interval>,
     pub problems: Vec<ProblemId>,
     pub constraint: OutputConstraint<String>,
 }
 
-#[serde(rename_all = "camelCase")]
 #[derive(Deserialize, Clone, Default, Debug, Eq, PartialEq)]
+#[serde(rename_all = "camelCase")]
 pub struct FindInstanceCandidate {
     #[serde(rename = "type")]
     pub of_type: String,
