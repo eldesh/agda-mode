@@ -35,9 +35,7 @@ async fn line_impl<'a>(agda: &mut Repl, line: UserInput<'a>) -> Monad<bool> {
         Type(i) => ty(agda, i).await?,
         Context(i) => ctx(agda, i).await?,
         Split(i, pat) => split(agda, i, pat).await?,
-        Reload => {
-            reload(agda).await?;
-        }
+        Reload => reload_unit(agda).await?,
         ReadToEnd => loop {
             agda.agda.response().await?;
         },
