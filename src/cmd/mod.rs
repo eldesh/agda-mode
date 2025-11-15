@@ -28,7 +28,9 @@ pub enum Cmd {
     Constraints,
     /// Show unsolved metas. If there are no unsolved metas but
     /// unsolved constraints, show those instead.
-    Metas,
+    Metas {
+        rewrite: Rewrite,
+    },
     /// Shows all the top-level names in the given module, along with
     /// their types. Uses the top-level scope.
     ShowModuleContentsToplevel {
@@ -217,7 +219,7 @@ impl Display for Cmd {
                 flags
             ),
             Constraints => f.write_str("Cmd_constraints"),
-            Metas => f.write_str("Cmd_metas"),
+            Metas { rewrite } => write!(f, "( Cmd_metas {:?} )", rewrite),
             ShowModuleContentsToplevel { rewrite, search } => write!(
                 f,
                 "( Cmd_show_module_contents_toplevel {:?} {:?} )",
